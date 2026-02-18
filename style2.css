@@ -1,0 +1,158 @@
+/*"saya mengerjakan tugas ini sendiri tanpa melakukan kecurangan seperti menggunakan, 
+mendupliaksi kode perogram kode program yang ada. 
+jika saya melakukan kecurangan dalam perngerjaan tugas ini 
+maka saya siap menerima sanksi atau hukuman dari dari dosen mata kuliah dan tuhan / allah  swt"*/
+/* --- Reset & Variabel --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-body: #4D83AA;      /* Background Luar */
+    --paper-white: #ffffff;  /* Kertas */
+    --header-yellow: #E2D800; /* Kuning Header */
+    --text-blue: #032152;    /* Teks Header */
+    --label-blue: #21678A;   /* Warna Teks Label (Sesuai Gambar) */
+    --row-bg-blue: #C0E8FB;  /* Warna Background Baris Form (Sesuai Gambar) */
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+/* --- Container Utama (800px) --- */
+.container {
+    width: 800px;
+    background-color: var(--paper-white);
+    min-height: 600px; /* Minimal tinggi agar proporsional */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
+    position: relative;
+}
+
+/* --- Header Binder Simple (Tanpa div banyak) --- */
+.binder-header {
+    background-color: var(--header-yellow);
+    height: 60px; /* Tinggi area kuning */
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Membuat lubang menggunakan Radial Gradient */
+    /* Lingkaran biru (warna body) di atas warna kuning */
+    background-image: radial-gradient(circle at 50% 12px, var(--bg-body) 8px, transparent 9px);
+    background-size: 40px 40px; /* Jarak antar lubang */
+    background-repeat: repeat-x;
+    background-position: top center;
+}
+
+.binder-header h1 {
+    font-size: 24px;
+    color: var(--text-blue);
+    margin-top: 15px; /* Dorong sedikit ke bawah agar tidak kena lubang */
+}
+
+/* --- Konten Form --- */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-title {
+    color: var(--text-blue);
+    margin: 20px 0 30px 0;
+    font-size: 22px;
+}
+
+/* --- Styling Form (Lebar 500px) --- */
+.login-form {
+    width: 500px;
+    margin: 0 auto; /* Tengah secara horizontal */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Jarak antar baris */
+}
+
+/* Style Baris Umum */
+.form-row {
+    background-color: var(--row-bg-blue); /* #C0E8FB */
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* Label (Kiri) */
+.form-row label {
+    color: var(--label-blue); /* #21678A */
+    font-weight: bold;
+    font-size: 14px;
+    width: 35%; /* Lebar area label */
+    text-align: right;
+    padding-right: 20px;
+}
+
+/* Input (Kanan) */
+.form-row input[type="text"],
+.form-row input[type="password"] {
+    width: 60%;
+    padding: 5px 10px;
+    border: 1px dashed #21678A; /* Border putus-putus biru */
+    border-radius: 5px;
+    outline: none;
+    font-family: inherit;
+    color: #555;
+}
+
+/* Placeholder style */
+::placeholder {
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* --- Spesifik: Baris Remember Me --- */
+.remember-row {
+    justify-content: flex-end; /* Isi ditaruh di kanan */
+}
+
+.remember-row .checkbox-container {
+    width: auto; /* Reset lebar label */
+    text-align: right;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #555; /* Warna teks agak abu sesuai gambar */
+    font-size: 13px;
+}
+
+/* --- Spesifik: Baris Tombol Submit --- */
+.submit-row {
+    justify-content: flex-end; /* Tombol di kanan */
+}
+
+button {
+    background-color: #5F8CA8; /* Biru tombol agak gelap */
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background-color: var(--label-blue);
+}

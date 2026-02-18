@@ -1,0 +1,182 @@
+/*"saya mengerjakan tugas ini sendiri tanpa melakukan kecurangan seperti menggunakan, 
+mendupliaksi kode perogram kode program yang ada. 
+jika saya melakukan kecurangan dalam perngerjaan tugas ini 
+maka saya siap menerima sanksi atau hukuman dari dari dosen mata kuliah dan tuhan / allah  swt"*/
+/* --- Reset & Variabel Warna --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-blue: #4D83AA;      /* Biru Medium (Latar Body) */
+    --header-yellow: #E2D800; /* Kuning Terang */
+    --text-dark: #032152;    /* Biru Gelap (Teks) */
+    --table-blue: #9CBCD0;   /* Biru Muda (Tabel) */
+    --paper-white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-blue);
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Font santai sesuai gambar */
+    display: flex;
+    justify-content: center;
+    padding-top: 50px; /* Ruang agar terlihat di tengah */
+    padding-bottom: 50px;
+}
+
+/* --- Container Utama --- */
+.container {
+    width: 800px;
+    background-color: var(--paper-white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 0 0 10px 10px; /* Sudut bawah melengkung sedikit */
+    overflow: hidden;
+}
+
+/* --- Header Binder (Efek Sobekan) --- */
+.binder-header {
+    background-color: var(--header-yellow);
+    position: relative;
+    /* Margin atas 10px + 20px area kuning = padding total */
+    padding-bottom: 10px; 
+}
+
+/* Trik CSS untuk membuat lubang binder */
+.binder-holes {
+    height: 20px;
+    width: 100%;
+    background-color: var(--header-yellow);
+    /* Membuat lingkaran transparan yang menembus ke warna background body */
+    background-image: radial-gradient(circle at 83% 12px, var(--bg-blue) 4px, transparent 5px);
+    background-size: 20px 20px; /* Jarak antar lubang */
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    margin-top: -10px; /* Menaikkan sedikit agar menyatu dengan background luar */
+}
+
+.header-content {
+    padding: 0 20px;
+    height: 40px; /* Estimasi tinggi area teks */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Mengatur judul ke tengah seperti gambar */
+}
+
+.header-content h1 {
+    color: var(--text-dark);
+    font-size: 24px;
+    margin-top: -10px; /* Menyesuaikan posisi vertikal */
+}
+
+/* --- Layout Kolom (Flexbox) --- */
+.content-wrapper {
+    display: flex;
+    min-height: 400px; /* Tinggi minimal agar terlihat proporsional */
+}
+
+/* --- Sidebar (Kiri 300px) --- */
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    border-right: 2px dashed #000; /* Garis putus-putus pemisah */
+    color: var(--text-dark);
+}
+
+.sidebar h3 {
+    border-bottom: 2px dotted var(--text-dark);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+
+.nav-links {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.nav-links li {
+    margin-bottom: 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+/* Form Search */
+.search-box {
+    display: flex;
+    gap: 5px;
+}
+
+.search-box input {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+.search-box button {
+    width: 30%;
+    background-color: #ccc;
+    border: 1px solid #999;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+/* --- Konten Utama (Kanan 500px) --- */
+.main-content {
+    width: 500px;
+    padding: 20px;
+}
+
+.main-content h2 {
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* Styling Tabel */
+.table-container {
+    background-color: var(--table-blue);
+    border-radius: 8px;
+    padding: 15px;
+    width: 100%;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    border: 2px solid #000; /* Border tabel luar */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Agar tidak ada celah antar sel */
+    color: white; /* Teks tabel putih agar kontras dengan biru muda */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+th {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.table-footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+}
