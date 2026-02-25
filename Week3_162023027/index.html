@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      font-size: 16px;
+    }
+    button {
+      padding: 4px 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    p {
+      margin: 8px 0;
+    }
+    #click-info {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="handleClick()">Click me!</button>
+
+  <div id="click-info"></div>
+
+  <p>Click the button to see the counter increase.</p>
+  <p>Close the browser tab (or window), and try again, and the counter is reset.</p>
+
+  <script>
+    // Gunakan localStorage agar data tetap tersimpan meski tab ditutup
+    function getCount() {
+      return parseInt(localStorage.getItem('clickCount') || '0');
+    }
+
+    function updateDisplay() {
+      const count = getCount();
+      const info = document.getElementById('click-info');
+      if (count > 0) {
+        info.innerHTML = `<p>You have clicked the button ${count} time(s) in this session.</p>`;
+      } else {
+        info.innerHTML = '';
+      }
+    }
+
+    function handleClick() {
+      const newCount = getCount() + 1;
+      localStorage.setItem('clickCount', newCount);
+      updateDisplay();
+    }
+
+    // Tampilkan saat halaman pertama kali dimuat
+    updateDisplay();
+  </script>
+
+</body>
+</html>
