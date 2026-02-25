@@ -36,7 +36,6 @@ maka saya siap menerima sanksi atau hukuman dari dari dosen mata kuliah dan tuha
   <p>Close the browser tab (or window), and try again, and the counter is reset.</p>
 
   <script>
-    // Gunakan localStorage agar data tetap tersimpan meski tab ditutup
     function getCount() {
       return parseInt(localStorage.getItem('clickCount') || '0');
     }
@@ -57,7 +56,6 @@ maka saya siap menerima sanksi atau hukuman dari dari dosen mata kuliah dan tuha
       updateDisplay();
     }
 
-    // Tampilkan saat halaman pertama kali dimuat
     updateDisplay();
   </script>
 
