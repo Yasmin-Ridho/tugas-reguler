@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Garis Hidup - ITENAS 2024</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-image: url("assets/logo_itenas.jpg");
+            background-size: 110px;
+            background-repeat: repeat;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        /* ===== WRAPPER ===== */
+        .wrapper {
+            width: 590px;
+            border: 5px solid #8B4500;
+            box-shadow: 3px 3px 12px rgba(0,0,0,0.6);
+            background: #c8920a;
+        }
+
+        /* ===== BANNER ===== */
+        .banner {
+            width: 100%;
+            height: 185px;
+            background-image: url("assets/itenas_cover.jpg");
+            background-size: 200px auto;
+            background-repeat: repeat;
+            background-position: top center;
+            border-bottom: 3px solid #8B4500;
+            overflow: hidden;
+        }
+
+        /* ===== BODY LAYOUT ===== */
+        .body-layout {
+            display: flex;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 105px;
+            flex-shrink: 0;
+            padding: 8px 0;
+            border-right: 2px solid #8B4500;
+            background: #c8920a;
+        }
+
+        .sidebar a {
+            display: block;
+            text-align: center;
+            padding: 7px 4px;
+            font-size: 13px;
+            color: #330000;
+            text-decoration: underline;
+            cursor: pointer;
+            border-bottom: 1px solid #a07010;
+            font-weight: normal;
+        }
+        .sidebar a:hover { background: rgba(0,0,0,0.1); }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            flex: 1;
+            padding: 16px 20px 20px 18px;
+        }
+
+        .main h2 {
+            font-size: 17px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .main p.desc {
+            font-size: 11.5px;
+            color: #111;
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1.5px solid #8B4500;
+            margin: 10px 0;
+        }
+
+        /* ===== FORM ===== */
+        .section-head {
+            font-size: 15px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 13px;
+            font-size: 12.5px;
+            color: #111;
+        }
+        .form-row label {
+            width: 195px;
+            flex-shrink: 0;
+            font-weight: normal;
+        }
+        .form-row select {
+            padding: 2px 4px;
+            font-size: 12px;
+            border: 1px solid #666;
+            background: #fff;
+            cursor: pointer;
+            min-width: 88px;
+        }
+
+        .btn-row { display: flex; gap: 5px; margin: 10px 0 12px; }
+        .btn {
+            padding: 3px 13px;
+            font-size: 12px;
+            border: 1px solid #555;
+            background: #d8d8d8;
+            cursor: pointer;
+            font-family: Arial;
+        }
+        .btn:hover { background: #bbb; }
+
+        /* ===== OUTPUT ===== */
+        .output-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .out-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            font-size: 12.5px;
+            color: #111;
+        }
+        .out-label { width: 80px; flex-shrink: 0; }
+        .out-colon { width: 12px; }
+        .out-row input {
+            width: 175px;
+            height: 18px;
+            padding: 0 4px;
+            font-size: 12px;
+            border: 1px solid #555;
+            background: #fff;
+        }
+
+        /* ===== RESULT ===== */
+        #result-block { display: none; margin-top: 14px; }
+
+        .result-title {
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .result-para {
+            font-size: 11.5px;
+            color: #111;
+            line-height: 1.65;
+            text-align: justify;
+            margin-bottom: 9px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 2px solid #8B4500;
+            text-align: center;
+            padding: 7px 4px;
+            font-size: 11.5px;
+            color: #111;
+            background: #c8920a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- BANNER -->
+    <div class="banner"></div>
+
+    <!-- BODY -->
+    <div class="body-layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <a>Home</a>
+            <a>Menu</a>
+            <a>Calculator</a>
+            <a>Garis Hidup</a>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <h2>Program Garis Hidup Tanggal Lahir</h2>
+
+            <p class="desc">Program ini merupakan program untuk mendeskripsikan karakter anda berdasarkan tanggal lahir yang kemudian hasilnya akan dikategorikan sebagai Garis Lahir 1 sampai 9.</p>
+            <p class="desc">Angka-angka dalam tanggal lahir Anda menyimpan banyak makna. Jumlahkan sampai menjadi satu angka, lalu lihat artinya? (misalnya Anda lahir tanggal 25 desember 1998, 25 + 12 + 1998 = 2 + 5 + 1 + 2 + 1 + 9 + 9 + 8 = 36 = 3 + 6 = 9)</p>
+
+            <hr class="divider">
+            <div class="section-head">Ayo Cari Tahu Kepribadian Kamu !</div>
+
+            <!-- FORM -->
+            <div class="form-row">
+                <label>Masukkan Tanggal Lahir Anda</label>
+                <select id="inp-tgl"></select>
+            </div>
+            <div class="form-row">
+                <label>Masukkan Bulan Lahir Anda</label>
+                <select id="inp-bln">
+                    <option value="1">Januari</option><option value="2">Februari</option>
+                    <option value="3">Maret</option><option value="4">April</option>
+                    <option value="5">Mei</option><option value="6">Juni</option>
+                    <option value="7">Juli</option><option value="8">Agustus</option>
+                    <option value="9">September</option><option value="10">Oktober</option>
+                    <option value="11">November</option><option value="12">Desember</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Masukkan Tahun Lahir Anda</label>
+                <select id="inp-thn"></select>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn" onclick="hitung()">kirim</button>
+                <button class="btn" onclick="resetForm()">reset</button>
+            </div>
+
+            <hr class="divider">
+
+            <!-- OUTPUT -->
+            <div class="output-title">Output</div>
+            <div class="out-row"><span class="out-label">Tanggal</span><span class="out-colon">:</span><input type="text" id="o-tgl" readonly></div>
+            <div class="out-row"><span class="out-label">Bulan</span><span class="out-colon">:</span><input type="text" id="o-bln" readonly></div>
+            <div class="out-row"><span class="out-label">Tahun</span><span class="out-colon">:</span><input type="text" id="o-thn" readonly></div>
+            <div class="out-row"><span class="out-label">Hasil 1</span><span class="out-colon">:</span><input type="text" id="o-h1" readonly></div>
+            <div class="out-row"><span class="out-label">Hasil 2</span><span class="out-colon">:</span><input type="text" id="o-h2" readonly></div>
+            <div class="out-row"><span class="out-label">Hasil Akhir</span><span class="out-colon">:</span><input type="text" id="o-hakhir" readonly></div>
+
+            <!-- RESULT -->
+            <div id="result-block">
+                <hr class="divider">
+                <div class="result-title" id="r-title"></div>
+                <div class="result-para" id="r-p1"></div>
+                <div class="result-para" id="r-p2"></div>
+                <div class="result-para" id="r-p3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">280224<br>Sistem Informasi | ITENAS 2024</div>
+</div>
+
+<script>
+// ===== POPULATE DROPDOWNS =====
+(function(){
+    var selTgl = document.getElementById('inp-tgl');
+    for(var i=1;i<=31;i++){
+        var o=document.createElement('option');
+        o.value=i; o.textContent=i; selTgl.appendChild(o);
+    }
+    var selThn = document.getElementById('inp-thn');
+    for(var y=1950;y<=2024;y++){
+        var o=document.createElement('option');
+        o.value=y; o.textContent=y;
+        if(y===2008) o.selected=true;
+        selThn.appendChild(o);
+    }
+})();
+
+// ===== DIGIT SUM =====
+function sumDigits(n){
+    return String(n).split('').reduce(function(a,d){ return a+parseInt(d); },0);
+}
+function reduceToSingle(n){
+    while(n>9) n=sumDigits(n);
+    return n;
+}
+
+// ===== HITUNG =====
+function hitung(){
+    var tgl = parseInt(document.getElementById('inp-tgl').value);
+    var bln = parseInt(document.getElementById('inp-bln').value);
+    var thn = parseInt(document.getElementById('inp-thn').value);
+
+    // Hasil 1: jumlahkan semua digit tgl+bln+thn
+    var allStr = String(tgl)+String(bln)+String(thn);
+    var h1 = allStr.split('').reduce(function(a,d){ return a+parseInt(d); },0);
+
+    // Hasil 2: kurangi h1 lagi jika >9
+    var h2 = h1>9 ? sumDigits(h1) : h1;
+
+    // Hasil Akhir: sampai 1-9
+    var hakhir = h2>9 ? reduceToSingle(h2) : h2;
+
+    document.getElementById('o-tgl').value   = tgl;
+    document.getElementById('o-bln').value   = bln;
+    document.getElementById('o-thn').value   = thn;
+    document.getElementById('o-h1').value    = h1;
+    document.getElementById('o-h2').value    = h2;
+    document.getElementById('o-hakhir').value= hakhir;
+
+    tampilkan(hakhir);
+}
+
+function resetForm(){
+    document.getElementById('inp-tgl').selectedIndex=0;
+    document.getElementById('inp-bln').selectedIndex=0;
+    // reset tahun to default (index of 2008)
+    var selThn=document.getElementById('inp-thn');
+    for(var i=0;i<selThn.options.length;i++){
+        if(selThn.options[i].value=='2008'){ selThn.selectedIndex=i; break; }
+    }
+    ['o-tgl','o-bln','o-thn','o-h1','o-h2','o-hakhir'].forEach(function(id){
+        document.getElementById(id).value='';
+    });
+    document.getElementById('result-block').style.display='none';
+}
+
+// ===== DESKRIPSI GARIS HIDUP 1-9 =====
+var data = {
+    1:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 1",
+        p1:"Bagi mereka yang jumlah angka harinya 1, kepemimpinan, kemandirian, dan keberanian adalah tema utama dalam hidupnya. Orang-orang dengan garis hidup 1 adalah para pionir dan pemimpin sejati yang memiliki tekad baja dan ambisi kuat. Mereka adalah individu yang sangat mandiri, tidak suka bergantung pada orang lain, dan selalu ingin menjadi yang terdepan dalam segala hal. Kreativitas dan orisinalitas adalah kekuatan terbesar mereka.",
+        p2:"Dalam kehidupan sosial, orang dengan garis hidup 1 cenderung mendominasi dan kadang terkesan egois atau terlalu keras kepala. Mereka sulit menerima arahan dari orang lain karena naluri alaminya adalah memimpin, bukan dipimpin. Namun di balik sikapnya yang tegas, mereka adalah pribadi yang sangat berdedikasi dan bersemangat. Belajarlah untuk lebih mendengarkan dan membuka diri terhadap kolaborasi.",
+        p3:"Karier terbaik untuk garis hidup 1 adalah wirausaha, eksekutif puncak, militer, atau profesi yang memberi kebebasan penuh untuk memimpin dan berinovasi. Potensi Anda untuk sukses sangat besar, selama Anda mampu menyeimbangkan ambisi dengan empati dan kerendahan hati dalam berinteraksi dengan orang-orang di sekitar Anda."
+    },
+    2:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 2",
+        p1:"Bagi mereka yang jumlah angka harinya 2, kerja sama, kepekaan, dan harmoni adalah tema utama dalam perjalanan hidupnya. Orang-orang dengan garis hidup 2 dikenal sebagai mediator dan diplomat alami yang penuh empati. Mereka sangat peka terhadap perasaan orang lain dan mampu menciptakan suasana harmonis di mana pun mereka berada. Kesetiaan dan kelembutan adalah dua kekuatan terbesar mereka.",
+        p2:"Tantangan terbesar bagi orang dengan garis hidup 2 adalah kecenderungan untuk terlalu bergantung pada pendapat dan persetujuan orang lain. Mereka sering kali kesulitan mengambil keputusan sendiri dan mudah terpengaruh oleh lingkungan sekitar. Kepekaan yang tinggi juga membuat mereka rentan terhadap kritik. Belajarlah untuk lebih percaya pada intuisi dan penilaian diri sendiri.",
+        p3:"Bidang yang paling cocok untuk garis hidup 2 meliputi konseling, psikologi, seni, musik, diplomasi, atau pekerjaan sosial. Kemampuan Anda untuk memahami dan terhubung dengan perasaan orang lain menjadikan Anda aset yang sangat berharga di lingkungan yang membutuhkan kerja sama tim dan kepekaan emosional yang tinggi."
+    },
+    3:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 3",
+        p1:"Bagi mereka yang jumlah angka harinya 3, ekspresi, sosialisasi, dan kreativitas sebagai pelajaran yang harus ditempuh dalam hidupnya. Entertainer kelas dunia, orangorang berkilau dan orang-orang optimistik termotivasi di dalamnya. Orang-orang dengan garis hidup 3 yang telah mengasah bakatnya mempunyai bakat kreatif yang istimewa, biasanya dalam verbal, tulisan, akting, atau semacamnya. Misi yang harus dicapainya dalam hidup adalah kesuksesan dalam berekspresi. Sisi cerah bagi orang-orang ini bertempu harmoni, keindahan dan kesenangan, serta membagi kemampuan kreatif Anda dengan dunia. Mengasah kemampuan Anda dalam expresi kreatif adalah misi tertinggi bagi angka garis hidup ini. Karakter mereka hangat dan bersahabat, pembicara yang baik, sosial dan terbuka.",
+        p2:"Pembicara yang trampil dalam arti lebih hanya seseorang yang menyenangkan untuk didengar, tapi lebih penting lagi, seseorang yang mampu untuk mendengarkan. Mereka adalah individu-individu yang selalu diterima dengan baik dalam setiap situasi sosial, dan bisa mengerti bagaimana membuat orang lain merasa diterima. Potensi imajinasi kreatif selalu ada, walaupun bisa berupa hal yang laten, karena mereka tidak selalu tergerak untuk mengembangkan potensi ini. Sikapnya melihat kehidupan hampir selalu positif, dan pembawaannya tidak pernah tidak terbuka. Anda bisa menghadapi banyak halangan dalam hidup dengan efektif dan langsung kembali bersemangat. Anda mempunyai tata krama yang baik dan tampaknya cukup peka akan perasaan dan emosi orang lain. Hidup dijalani sepenuhnya, seringkali tanpa kekhawatiran akan hari esok.",
+        p3:"Anda tidak terlalu pandai menangani perihal keuangan karena tidak menganggap penting hal itu. Uang akan dibelanjakan saat Anda punya, dan tidak dikeluarkan saat Anda tidak ada uang. Sisi negatifnya, sikap mereka dalam hidup bisa sangat ringan sampai membuatnya jadi tidak serius. Kemampuan Anda seringkali terlalu optimistis, dan jadi kehilangan fokus. Mereka dengan angka garis hidup 3 ini adalah teka-teki, dan Anda seringkali berganti mood dan cenderung menghindari. Sulit bagi Anda untuk menetap di satu tempat. Jaga agar tidak selalu mengkritik orang lain atau terlalu terbuka. Garis hidup 3 ini memberikan kemampuan di atas rata-rata dalam seni. Baik melukis, disain interior, lansekap, menulis, musik, teater, ataupun mampu sulurnya. Anda selalu gembira, penuh inspirasi, dan selalu mencari stimulasi dari orang-orang yang orisinil. Sifat Anda yang selalu mendukung Anda untuk bisa melasat, apalagi jika Anda mampu memfokuskan energi dan talenta Anda pada minat yang tepat."
+    },
+    4:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 4",
+        p1:"Bagi mereka yang jumlah angka harinya 4, keteraturan, kerja keras, dan dedikasi adalah inti dari perjalanan hidup mereka. Orang dengan garis hidup 4 adalah fondasi yang kokoh dalam kehidupan. Mereka dikenal sebagai pribadi yang sangat terorganisir, praktis, dan dapat sepenuhnya diandalkan oleh orang-orang di sekitarnya. Kejujuran dan integritas adalah nilai yang paling mereka junjung tinggi, dan mereka tidak pernah takut bekerja keras demi meraih tujuan.",
+        p2:"Sisi negatif dari garis hidup 4 adalah kecenderungan untuk menjadi terlalu kaku, konservatif, dan tidak fleksibel dalam menghadapi perubahan. Mereka sering kali memandang segala sesuatu secara hitam putih tanpa mau mempertimbangkan nuansa abu-abu. Belajar untuk lebih membuka diri terhadap perubahan dan cara-cara baru dalam menyelesaikan masalah akan sangat membantu perkembangan pribadi mereka.",
+        p3:"Karier yang paling cocok untuk garis hidup 4 meliputi teknik, arsitektur, akuntansi, manajemen proyek, konstruksi, atau bidang-bidang lain yang memerlukan ketelitian, ketekunan, dan perhatian terhadap detail. Anda adalah pembangun sejati yang mampu mengubah visi dan impian menjadi sebuah kenyataan melalui kerja keras, disiplin, dan dedikasi yang tak tergoyahkan."
+    },
+    5:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 5",
+        p1:"Bagi mereka yang jumlah angka harinya 5, kebebasan, petualangan, dan perubahan adalah napas kehidupan mereka. Orang dengan garis hidup 5 adalah jiwa-jiwa yang dinamis, selalu haus akan pengalaman baru, dan tidak bisa hidup dalam rutinitas yang membosankan. Mereka sangat mudah beradaptasi di lingkungan baru, memiliki rasa ingin tahu yang besar, dan mampu berkomunikasi dengan hampir semua kalangan dengan sangat baik dan menarik.",
+        p2:"Tantangan terbesar bagi garis hidup 5 adalah ketidakstabilan dan kesulitan untuk berkomitmen pada satu hal dalam jangka panjang. Mereka sering berganti pekerjaan, tempat tinggal, bahkan hubungan karena mudah bosan. Impulsivitas dan kecenderungan untuk mencari sensasi bisa membawa mereka ke dalam situasi yang merugikan jika tidak dikelola dengan bijaksana dan penuh tanggung jawab.",
+        p3:"Karier ideal untuk garis hidup 5 mencakup jurnalistik, perjalanan dan pariwisata, penjualan, pemasaran, entertainment, atau bidang apa pun yang menawarkan variasi, kebebasan berekspresi, dan tidak membatasi pergerakan mereka. Anda akan tumbuh dan berkembang pesat dalam lingkungan yang dinamis, penuh tantangan baru, dan memberikan kebebasan untuk mengekspresikan diri sepenuhnya."
+    },
+    6:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 6",
+        p1:"Bagi mereka yang jumlah angka harinya 6, tanggung jawab, kasih sayang, dan pelayanan kepada sesama adalah misi utama dalam hidup mereka. Orang dengan garis hidup 6 adalah pengasuh dan pelindung sejati yang penuh cinta dan perhatian. Mereka menempatkan keluarga, teman, dan komunitas sebagai prioritas utama dalam hidupnya. Keharmonisan rumah tangga dan hubungan yang hangat adalah sesuatu yang paling mereka perjuangkan setiap harinya.",
+        p2:"Tantangan bagi garis hidup 6 adalah kecenderungan untuk terlalu mengontrol orang-orang yang mereka cintai atau berkorban secara berlebihan hingga melupakan kebutuhan diri sendiri. Mereka bisa sangat mudah merasa bersalah ketika gagal memenuhi ekspektasi orang lain di sekitar mereka. Belajar menetapkan batasan yang sehat dan merawat diri sendiri adalah pelajaran terpenting bagi mereka.",
+        p3:"Bidang yang paling sesuai untuk garis hidup 6 meliputi pendidikan, layanan kesehatan, konseling, desain interior, seni, atau bidang sosial dan kemanusiaan lainnya. Anda adalah penyeimbang yang luar biasa dalam setiap lingkungan yang Anda masuki, dan Anda memiliki kemampuan alami untuk menciptakan keindahan, kenyamanan, dan keharmonisan di mana pun Anda berada."
+    },
+    7:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 7",
+        p1:"Bagi mereka yang jumlah angka harinya 7, pencarian kebenaran, kebijaksanaan, dan pemahaman mendalam adalah inti dari perjalanan hidup mereka. Orang dengan garis hidup 7 adalah para pemikir analitis dan kontemplatif yang sangat intuitif. Mereka tidak pernah puas dengan jawaban di permukaan dan selalu menggali lebih dalam untuk menemukan makna sejati di balik setiap peristiwa dalam hidupnya. Kecerdasan mereka di atas rata-rata.",
+        p2:"Tantangan bagi garis hidup 7 adalah kecenderungan untuk menarik diri dari kehidupan sosial dan terlalu mengisolasi diri dari dunia luar. Mereka sering merasa disalahpahami oleh orang lain sehingga lebih memilih kesendirian untuk merenung dan berpikir. Kepercayaan terhadap orang lain tidak mudah datang bagi mereka, dan ini bisa menjadi hambatan serius dalam membangun hubungan yang bermakna dan mendalam.",
+        p3:"Bidang yang paling cocok untuk garis hidup 7 antara lain penelitian ilmiah, filsafat, teknologi, psikologi, spiritualitas, atau bidang-bidang lain yang memerlukan analisis mendalam dan pemikiran kritis. Anda adalah pemikir sejati yang mampu membawa wawasan dan pemahaman baru kepada dunia, asalkan Anda berani untuk berbagi pengetahuan yang Anda miliki secara terbuka dan penuh percaya diri."
+    },
+    8:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 8",
+        p1:"Bagi mereka yang jumlah angka harinya 8, kekuatan, kesuksesan material, dan kekuasaan adalah tema sentral dalam perjalanan hidup mereka. Orang dengan garis hidup 8 adalah jiwa-jiwa yang kuat, sangat ambisius, dan berorientasi tinggi pada pencapaian nyata. Mereka memiliki kemampuan alami yang luar biasa dalam mengelola uang, sumber daya manusia, dan organisasi besar. Visi bisnis mereka sangat tajam dan jauh ke depan.",
+        p2:"Sisi negatif dari garis hidup 8 adalah risiko menjadi terlalu materialistis, otoriter, atau terobsesi pada kekuasaan hingga mengabaikan dimensi emosional dan spiritual yang juga penting dalam kehidupan. Mereka kadang dipandang terlalu keras dan tidak punya waktu untuk hal-hal yang dianggapnya tidak produktif. Belajar menyeimbangkan ambisi dengan kerendahan hati, empati, dan kepedulian terhadap sesama adalah kunci.",
+        p3:"Karier ideal untuk garis hidup 8 mencakup bisnis, keuangan, hukum, politik, manajemen senior, atau posisi eksekutif puncak di berbagai organisasi. Anda adalah pemimpin alami yang lahir untuk menggerakkan dan menginspirasi orang banyak menuju tujuan besar. Potensi Anda untuk meraih kemakmuran, pengaruh, dan kesuksesan yang luar biasa sangat besar jika dimanfaatkan dengan kebijaksanaan dan integritas yang tinggi."
+    },
+    9:{
+        judul:"Tanggal Lahir Anda Berada Pada Garis Hidup 9",
+        p1:"Bagi mereka yang jumlah angka harinya 9, kasih universal, pengabdian kepada sesama, dan kebijaksanaan mendalam adalah misi tertinggi dalam hidupnya. Orang dengan garis hidup 9 adalah jiwa-jiwa yang luas dan penuh belas kasih, dengan kepekaan yang sangat mendalam terhadap penderitaan dan kebutuhan orang lain. Mereka hidup dengan nilai-nilai kemanusiaan yang tinggi dan sering merasakan panggilan batin yang kuat untuk berkontribusi positif bagi dunia.",
+        p2:"Tantangan bagi garis hidup 9 adalah kesulitan untuk melepaskan masa lalu dan kecenderungan untuk berkorban secara berlebihan bagi orang lain hingga melupakan diri sendiri. Mereka sering merasa kecewa ketika cinta, kebaikan, dan pengorbanan yang mereka berikan tidak dibalas dengan sepadan. Belajar untuk menerima ketidaksempurnaan dunia, mengikhlaskan, dan menjaga keseimbangan diri adalah pelajaran terpenting dalam hidup mereka.",
+        p3:"Bidang yang paling sesuai untuk garis hidup 9 meliputi seni, sastra, hukum, layanan sosial dan kemanusiaan, pendidikan, atau profesi-profesi di bidang kesehatan. Anda adalah jiwa yang membawa cahaya, inspirasi, dan harapan bagi orang-orang di sekitar Anda. Ketika Anda menemukan cara yang tepat untuk menyalurkan kasih universal Anda, dampak yang Anda berikan kepada dunia bisa menjadi luar biasa besar dan bermakna."
+    }
+};
+
+function tampilkan(n){
+    var d=data[n];
+    document.getElementById('r-title').textContent=d.judul;
+    document.getElementById('r-p1').textContent=d.p1;
+    document.getElementById('r-p2').textContent=d.p2;
+    document.getElementById('r-p3').textContent=d.p3;
+    var rb=document.getElementById('result-block');
+    rb.style.display='block';
+    rb.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
