@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Sistem Informasi | ITENAS 2024</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background-color: #ccc;
+    background-image: url('assets/logo_itenas.jpg');
+    background-repeat: repeat;
+    background-size: 60px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 480px;
+    border: 3px solid #8B0000;
+    background: #f0a500;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Image grid */
+  .img-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 80px);
+    gap: 2px;
+    background: #000;
+  }
+
+  .img-grid img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  /* Nav + content area */
+  .main-area {
+    display: flex;
+    flex: 1;
+  }
+
+  .sidebar {
+    width: 90px;
+    background: #f0a500;
+    border-right: 1px solid #8B4513;
+    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 5px 8px;
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    background: #f0a500;
+  }
+
+  .sidebar a:hover {
+    background: #d08000;
+  }
+
+  .sidebar hr {
+    border: 1px solid #8B4513;
+    margin: 4px 0;
+  }
+
+  .content {
+    flex: 1;
+    padding: 8px;
+    background: #f0a500;
+    font-size: 12px;
+  }
+
+  /* Home page */
+  #page-home .shout-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  #page-home .shout-row span {
+    font-size: 11px;
+  }
+
+  .btn-shout {
+    background: #00b0f0;
+    color: #fff;
+    border: none;
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* Menu page */
+  #page-menu table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  #page-menu th {
+    background: #d08000;
+    padding: 3px 5px;
+    text-align: left;
+    border: 1px solid #8B4513;
+  }
+
+  #page-menu td {
+    padding: 3px 5px;
+    border: 1px solid #8B4513;
+    background: #f5c040;
+  }
+
+  #page-menu input[type=number] {
+    width: 45px;
+    font-size: 11px;
+    padding: 1px;
+  }
+
+  .summary-row td {
+    font-weight: bold;
+    background: #e8a800 !important;
+  }
+
+  .btn-reset {
+    background: #e0e0e0;
+    border: 1px solid #888;
+    padding: 2px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  /* Calculator page */
+  #page-calc .calc-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  #page-calc input[type=number] {
+    width: 50px;
+    font-size: 12px;
+    padding: 2px;
+  }
+
+  #page-calc select {
+    font-size: 12px;
+    padding: 2px;
+  }
+
+  #page-calc .result {
+    font-size: 12px;
+    padding: 2px 8px;
+    background: #fff;
+    border: 1px solid #888;
+    min-width: 60px;
+    display: inline-block;
+  }
+
+  .btn-hitung {
+    background: #e0e0e0;
+    border: 1px solid #888;
+    padding: 2px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    background: #f0a500;
+    text-align: center;
+    font-size: 11px;
+    padding: 4px;
+    border-top: 1px solid #8B4513;
+    color: #333;
+  }
+
+  .hidden { display: none !important; }
+
+  /* Custom Alert Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .modal-box {
+    background: #d0d0d0;
+    border: 2px solid #888;
+    border-radius: 4px;
+    min-width: 280px;
+    max-width: 340px;
+    font-size: 12px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+  }
+
+  .modal-title {
+    background: #4a4a4a;
+    color: white;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .modal-title::before {
+    content: '🌐';
+    font-size: 13px;
+  }
+
+  .modal-body {
+    padding: 14px 16px;
+    background: #e8e8e8;
+    color: #000;
+  }
+
+  .modal-footer {
+    padding: 6px 10px;
+    text-align: right;
+    background: #d8d8d8;
+  }
+
+  .btn-ok {
+    background: #00b0f0;
+    color: #fff;
+    border: none;
+    padding: 3px 18px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .modal-overlay.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Alert Modal -->
+<div class="modal-overlay hidden" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">file://</div>
+    <div class="modal-body" id="modal-body">Message</div>
+    <div class="modal-footer">
+      <button class="btn-ok" id="modal-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Image grid -->
+  <div class="img-grid">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+    <img src="assets/itenas_cover.jpg" alt="ITENAS">
+  </div>
+
+  <!-- Main area -->
+  <div class="main-area">
+    <!-- Sidebar nav -->
+    <div class="sidebar">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="goMenu()">Menu</a>
+      <a onclick="showPage('calc')">Calculator</a>
+      <hr>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- HOME PAGE -->
+      <div id="page-home">
+        <div class="shout-row">
+          <span>klik button disampling &gt;&gt;</span>
+          <button class="btn-shout" onclick="doShout()">Shout</button>
+        </div>
+      </div>
+
+      <!-- MENU PAGE -->
+      <div id="page-menu" class="hidden">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Makanan/Minuman</th>
+              <th>Harga</th>
+              <th>Pesan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Bakso Istimewa</td>
+              <td>@ Rp 12000</td>
+              <td><input type="number" id="qty1" min="0" value="0" oninput="hitungTotal()"></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Soto Spesial</td>
+              <td>@ Rp 10000</td>
+              <td><input type="number" id="qty2" min="0" value="0" oninput="hitungTotal()"></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Mie Ayam Super</td>
+              <td>@ Rp 15000</td>
+              <td><input type="number" id="qty3" min="0" value="0" oninput="hitungTotal()"></td>
+            </tr>
+            <tr class="summary-row">
+              <td colspan="3" style="text-align:right">Jumlah Total</td>
+              <td id="jumlah-total">0</td>
+            </tr>
+            <tr class="summary-row">
+              <td colspan="3" style="text-align:right">Diskon</td>
+              <td id="diskon">0</td>
+            </tr>
+            <tr class="summary-row">
+              <td colspan="3" style="text-align:right">Jumlah Bayar</td>
+              <td id="jumlah-bayar">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-reset" onclick="resetMenu()">Reset</button>
+      </div>
+
+      <!-- CALCULATOR PAGE -->
+      <div id="page-calc" class="hidden">
+        <div class="calc-row">
+          <input type="number" id="num1" placeholder="0">
+          <select id="operator">
+            <option value="*">×</option>
+            <option value="/">÷</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+          </select>
+          <input type="number" id="num2" placeholder="0">
+          <span>=</span>
+          <span class="result" id="calc-result"></span>
+        </div>
+        <div>
+          <button class="btn-hitung" onclick="doHitung()">Hitung</button>
+          <button class="btn-reset" onclick="resetCalc()">Reset</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    280224<br>Sistem Informasi | ITENAS 2024
+  </div>
+</div>
+
+<script>
+  // ---- Modal helper ----
+  let modalCallback = null;
+  function showAlert(msg, cb) {
+    document.getElementById('modal-body').textContent = msg;
+    document.getElementById('modal-overlay').classList.remove('hidden');
+    modalCallback = cb || null;
+  }
+  document.getElementById('modal-ok').addEventListener('click', function() {
+    document.getElementById('modal-overlay').classList.add('hidden');
+    if (modalCallback) { modalCallback(); modalCallback = null; }
+  });
+
+  // ---- Page navigation ----
+  function showPage(name) {
+    document.getElementById('page-home').classList.add('hidden');
+    document.getElementById('page-menu').classList.add('hidden');
+    document.getElementById('page-calc').classList.add('hidden');
+    document.getElementById('page-' + name).classList.remove('hidden');
+  }
+
+  // ---- Shout ----
+  function doShout() {
+    showAlert('Hai, Selamat datang di Sistem Sederhana');
+  }
+
+  // ---- Menu ----
+  function goMenu() {
+    showAlert('Input Jumlah Pesanan agar di hitung otomatis oleh sistem', function() {
+      showPage('menu');
+    });
+  }
+
+  function hitungTotal() {
+    var qty1 = parseInt(document.getElementById('qty1').value) || 0;
+    var qty2 = parseInt(document.getElementById('qty2').value) || 0;
+    var qty3 = parseInt(document.getElementById('qty3').value) || 0;
+    var total = qty1 * 12000 + qty2 * 10000 + qty3 * 15000;
+    var diskon = total > 50000 ? Math.round(total * 0.1) : 0;
+    var bayar = total - diskon;
+    document.getElementById('jumlah-total').textContent = total;
+    document.getElementById('diskon').textContent = diskon;
+    document.getElementById('jumlah-bayar').textContent = bayar;
+  }
+
+  function resetMenu() {
+    document.getElementById('qty1').value = 0;
+    document.getElementById('qty2').value = 0;
+    document.getElementById('qty3').value = 0;
+    hitungTotal();
+  }
+
+  // ---- Calculator ----
+  function doHitung() {
+    var n1 = document.getElementById('num1').value;
+    var n2 = document.getElementById('num2').value;
+    if (n1 === '' || n2 === '') {
+      showAlert('inputan pertama dan kedua harus lebih dari 0');
+      return;
+    }
+    var a = parseFloat(n1), b = parseFloat(n2);
+    var op = document.getElementById('operator').value;
+    var result;
+    if (op === '+') result = a + b;
+    else if (op === '-') result = a - b;
+    else if (op === '*') result = a * b;
+    else if (op === '/') {
+      if (b === 0) { showAlert('Tidak bisa dibagi 0'); return; }
+      result = a / b;
+    }
+    document.getElementById('calc-result').textContent = result;
+  }
+
+  function resetCalc() {
+    document.getElementById('num1').value = '';
+    document.getElementById('num2').value = '';
+    document.getElementById('calc-result').textContent = '';
+  }
+</script>
+</body>
+</html>
